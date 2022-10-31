@@ -6,6 +6,12 @@
     </x-slot>
 
     <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
         <table class="table">
             <thead>
             <tr>
@@ -30,6 +36,17 @@
                                 <input type="hidden" name="id" value="{{$user->id}}">
                                 <button type="submit">
                                     <img src="https://cdn-icons-png.flaticon.com/512/748/748137.png"
+                                         style="width: 20px"/>
+                                </button>
+                            </form>
+                        </td>
+                    @else
+                        <td>
+                            <form action="{{route('unFriend')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$user->id}}">
+                                <button type="submit">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/8619/8619283.png"
                                          style="width: 20px"/>
                                 </button>
                             </form>

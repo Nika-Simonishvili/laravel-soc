@@ -86,4 +86,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->friends()->contains($user);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

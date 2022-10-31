@@ -49,4 +49,12 @@ class FriendsController extends Controller
 
         return redirect('dashboard')->with('reject', 'Friend request rejected.');
     }
+
+    public function unFriend(Request $request)
+    {
+        Auth::user()->friendFrom()->detach($request->id);
+        Auth::user()->friendTo()->detach($request->id);
+
+        return back()->with('success', 'Friend Removed.');
+    }
 }
